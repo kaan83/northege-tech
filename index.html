@@ -1107,8 +1107,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-
+<script>
   // Language toggle
   let currentLang = 'en';
 
@@ -1116,20 +1115,14 @@
     currentLang = currentLang === 'en' ? 'tr' : 'en';
     const btn = document.getElementById('langBtn');
     btn.textContent = currentLang === 'en' ? '🇹🇷 TR' : '🇬🇧 EN';
-    
-    // Translate all elements with data-en / data-tr
     document.querySelectorAll('[data-en]').forEach(el => {
       const val = el.getAttribute('data-' + currentLang);
       if (val) el.innerHTML = val;
     });
-
-    // Translate placeholders
     document.querySelectorAll('[data-en-placeholder]').forEach(el => {
       const val = el.getAttribute('data-' + currentLang + '-placeholder');
       if (val) el.placeholder = val;
     });
-
-    // Update html lang attribute
     document.documentElement.lang = currentLang;
   }
 
@@ -1155,4 +1148,13 @@
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target;
-    btn.te
+    btn.textContent = currentLang === 'tr' ? 'Mesaj Gönderildi ✓' : 'Message Sent ✓';
+    btn.style.background = 'var(--accent)';
+    setTimeout(() => {
+      btn.textContent = currentLang === 'tr' ? 'Mesaj Gönder →' : 'Send Message →';
+      btn.style.background = 'var(--sky)';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
